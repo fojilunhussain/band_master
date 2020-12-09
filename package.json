@@ -4,14 +4,18 @@
   "description": "ticket master but better",
   "main": "index.js",
   "dependencies": {
+    "@types/jest": "^26.0.17",
+    "express": "^4.17.1",
     "jshint": "^2.12.0",
     "latest-version": "^5.1.0",
     "mysql": "^2.18.1",
     "typescript": "^4.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "supertest": "^6.0.1"
+  },
   "scripts": {
-    "test": "npm run test"
+    "test": "jest"
   },
   "author": "fojilun hussain",
   "license": "ISC",
@@ -22,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/fojilunhussain/band_master/issues"
   },
-  "homepage": "https://github.com/fojilunhussain/band_master#readme"
+  "homepage": "https://github.com/fojilunhussain/band_master#readme",
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
 }
