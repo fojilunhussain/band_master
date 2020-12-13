@@ -1,3 +1,4 @@
+import * as React from 'React';
 import './App.css';
 
 function App() {
