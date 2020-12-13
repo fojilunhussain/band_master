@@ -1,6 +1,12 @@
-import mongoose from 'mongoose';
+import { Schema, model, Document, Model } from 'mongoose';
 
-const listOfCapitals = [
+declare interface IEvent extends Document {
+    eventId: string;
+    date: Date;
+    city: Enumerator<listOfCapitals>;
+};
+
+enum listOfCapitals {
     'Kabul',
     'Tirana',
     'Algiers',
@@ -12,14 +18,26 @@ const listOfCapitals = [
     'Canberra',
     'Vienna',
     'Baku'
-];
+};
 
-const EventSchema = new mongoose.Schema({
-    eventId: { type: String, required: true, unique: true },
-    date: Date,
-    city: { enum: listOfCapitals }
-});
+export interface EventsModel extends Model<IEvent> {};
 
-const EventsModel = mongoose.model("Event", EventSchema);
+export class Event {
+    private _model: Model<IEvent>;
+
+    constructor() {
+        const EventSchema = new Schema({
+            eventId: { type: String, required: true, unique: true },
+            date: Date,
+            city: { enum: listOfCapitals }
+        });
+
+        this._model = model<IEvent>('Event', EventSchema);
+    };
+
+    public get model(): Model<IEvent> {
+        return this._model;
+    };
+};
 
 export default EventsModel;
