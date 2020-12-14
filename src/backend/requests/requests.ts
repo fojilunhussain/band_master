@@ -1,25 +1,38 @@
-// var logger = require('morgan');
-// var express = require('express');
-// var cookieParser = require('cookie-parser');
-// var indexRouter = require('./routes/index');
-// import logger from 'morgan';
-// import express from 'express';
-// import cookieParser from 'cookie-parser';
-// import indexRouter from './routes/index';
-// var app = express();
+import createError from 'http-errors';
+import logger from 'morgan';
+import express from 'express';
+import cookieParser from 'cookie-parser';
 
-// app.use(logger('dev'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
-// app.use('/v1', indexRouter);
+import { User } from './../db/models/Users.model';
+import { DB } from 'backend/db/controller';
 
-// // module.exports = app;
-// export default app;
+var app = express();
 
-import express = require('express');
+// app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-const app: express.Application = express();
+app.post('/users', async (req, res) => {
+    try {
+        const { userId } = req.body;
+        // const user = await User.create({ userId })
+        const user = new DB.Models.User({
+            userId: req.body.userId
+        });
+        res.status(201).json({
+            status: 'success',
+            data: {
+                userId
+            }
+        });
+    } catch (err) {
+        res.status(400).json({
+            status: 'fail',
+            message: 'Unable to create user'
+        });
+    };
+});
 
 app.get('/', function(req, res) {
     res.send('Hello');
