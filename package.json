@@ -1,0 +1,24 @@
+{
+  "name": "band_master",
+  "version": "1.0.0",
+  "description": "ticket master but better",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fojilunhussain/band_master.git"
+  },
+  "author": "fojilun hussain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fojilunhussain/band_master/issues"
+  },
+  "homepage": "https://github.com/fojilunhussain/band_master#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.6.3",
+    "mongoose": "^5.11.8"
+  }
+}
